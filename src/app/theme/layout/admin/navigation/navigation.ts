@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { bHideIncidentMenuItems, getEnumText } from 'src/app/Models/UserRole';
 
 export interface NavigationItem {
   id: string;
@@ -18,7 +19,32 @@ export interface NavigationItem {
 }
 
 export interface Navigation extends NavigationItem {
-  children?: NavigationItem[];
+  children?: NavigationItem[]; 
+}
+
+var incidentMenuItems: any = {
+  id: 'basic',
+  title: 'Manage Incidents',
+  type: 'collapse',
+  icon: 'feather icon-box',                
+  children: [
+    {
+      id: 'addInc',
+      title: 'Add Incident',
+      type: 'item',
+      url: '/add-incident',            
+    },
+    {
+      id: 'showInc',
+      title: 'Show Incidents',
+      type: 'item',
+      url: '/incidents-list',            
+    },          
+  ],
+};
+
+if(bHideIncidentMenuItems()) {
+  incidentMenuItems = {};
 }
 
 const NavigationItems = [
@@ -36,26 +62,7 @@ const NavigationItems = [
         icon: 'feather icon-home',
         classes: 'nav-item',
       },
-      {
-        id: 'basic',
-        title: 'Manage Incidents',
-        type: 'collapse',
-        icon: 'feather icon-box',
-        children: [
-          {
-            id: 'addInc',
-            title: 'Add Incident',
-            type: 'item',
-            url: '/add-incident',
-          },
-          {
-            id: 'showInc',
-            title: 'Show Incidents',
-            type: 'item',
-            url: '/incidents-list',
-          },          
-        ],
-      }
+      incidentMenuItems
       ,
       {
         id: 'basic',

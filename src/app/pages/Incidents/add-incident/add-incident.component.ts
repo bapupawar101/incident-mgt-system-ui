@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { bHideIncidentMenuItems } from 'src/app/Models/UserRole';
 import { HttpClientService } from 'src/app/Services/http-client.service';
 
 @Component({
@@ -18,7 +19,12 @@ export class AddIncidentComponent {
   showChatTabClass: string = "";
   showCommentTabClass: string = "";
 
-  constructor(public service: HttpClientService, private router: Router){}
+  constructor(public service: HttpClientService, private router: Router){
+    if(bHideIncidentMenuItems())
+    {
+      this.router.navigateByUrl('');
+    }
+  }
 
   ngOnInit(): void {
     this.form = new FormGroup({

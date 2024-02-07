@@ -15,6 +15,7 @@ export class NavRightComponent {
     localStorage.setItem("isAuthenticated", "");
     localStorage.setItem("jwtToken", "");
     this.router.navigateByUrl("auth/signin");
+    localStorage.setItem("loginUserInfo", "");
   }
 
 }
