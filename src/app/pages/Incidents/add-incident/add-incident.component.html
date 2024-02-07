@@ -1,133 +1,145 @@
 <div class="container justify-content-center align-items-center">
-	<div class="p-3">		
-		<nav>
-			<div class="nav nav-tabs" id="nav-tab" role="tablist">
-				<button class="nav-link active" id="nav-create-incident-tab" data-bs-toggle="tab" data-bs-target="#nav-create-incident" type="button" role="tab" aria-controls="nav-create-incident" aria-selected="true">Create Incident</button>
-				<button class="nav-link" id="nav-chat-tab" data-bs-toggle="tab" data-bs-target="#nav-chat" type="button" role="tab" aria-controls="nav-chat" aria-selected="false">Chat</button>
-				<button class="nav-link" id="nav-Comment-tab" data-bs-toggle="tab" data-bs-target="#nav-Comment" type="button" role="tab" aria-controls="nav-Comment" aria-selected="false">Comment</button>
-			</div>
-		</nav>
-		<div class="tab-content p-4 border" id="nav-tabContent">
-			<div class="tab-pane fade active show" id="nav-create-incident" role="tabpanel" aria-labelledby="nav-create-incident-tab">
-				<form [formGroup]="form" (ngSubmit)="creatIncident()">                    
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="row mb-3">
-                                <label for="inputDescription" class="form-label">Description</label>
-                              <div class="col-sm-12">
-                                <input type="test" class="form-control" formControlName="description" id="inputDescription" placeholder="Enter Description">
-                              </div>
-                            </div>
-                        
-                            <div class="row mb-3">
-                                <label for="inputSymptoms" class="form-label">Symptoms</label>
-                              <div class="col-sm-12">
-                                <input type="test" class="form-control" formControlName="symptoms" id="inputSymptoms" placeholder="Enter Symptoms">
-                              </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputSymptoms" class="form-label">Tenant</label>
-                              <div class="col-sm-12">
-                                <select class="form-select" formControlName="tenantId" id="tenantId">
-                                    <option value="1" selected>HR</option>
-                                    <option value="2">IT</option>
-                                    <option value="3">Facility</option>
-                                </select>
-                              </div>
-                            </div>
-        
-                            <div class="row mb-3">
-                                <label for="inputSymptoms" class="form-label">Priority</label>
-                              <div class="col-sm-12">
-                                <select class="form-select" formControlName="priorityId" id="tenantId">
-                                    <option value="0" selected>High</option>
-                                    <option value="1">Medium</option>
-                                    <option value="2">Low</option>
-                                </select>
-                              </div>
-                            </div>
-        
-                            <div class="row mb-3">
-                                <label for="inputSymptoms" class="form-label">Urgency</label>
-                              <div class="col-sm-12">
-                                <select class="form-select" formControlName="urgencyId" id="urgencyId">
-                                    <option value="0" selected>High</option>
-                                    <option value="1">Medium</option>
-                                    <option value="2">Low</option>
-                                </select>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="row mb-3">
-                                <label for="inputSymptoms" class="form-label">Country</label>
-                              <div class="col-sm-12">
-                                <select class="form-select" id="countryId">
-                                    <option value="1">India</option>
-                                </select>
-                              </div>
-                            </div>
+  <div class="row">
+    <div class="col-12 text-end">
+      <a routerLink="/incidents-list" class="btn btn-primary btn-sm mb-2 me-0">
+        <span class="fa fa-arrow-left"></span> Show Incidents
+      </a>
+  </div>
+</div>   
+  <div class="p-3">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button (click)="showTab('incident')" class="nav-link {{showIncidentTabClass}}" id="nav-create-incident-tab"
+          data-bs-toggle="tab" data-bs-target="#nav-create-incident" type="button" role="tab"
+          aria-controls="nav-create-incident" aria-selected="true">Create Incident</button>
+        <button (click)="showTab('chat')" class="nav-link {{showChatTabClass}}" id="nav-chat-tab" data-bs-toggle="tab"
+          data-bs-target="#nav-chat" type="button" role="tab" aria-controls="nav-chat"
+          aria-selected="false">Chat</button>
+        <button (click)="showTab('comment')" class="nav-link {{showCommentTabClass}}" id="nav-Comment-tab"
+          data-bs-toggle="tab" data-bs-target="#nav-Comment" type="button" role="tab" aria-controls="nav-Comment"
+          aria-selected="false">Comment</button>
+      </div>
+    </nav>
+    <div class="tab-content p-4 border" id="nav-tabContent">
+      <div class="tab-pane fade {{showIncidentTabClass}}" id="nav-create-incident" role="tabpanel"
+        aria-labelledby="nav-create-incident-tab">
+        <form [formGroup]="form" (ngSubmit)="creatIncident()">
+          <div class="row">
+            <div class="col-6">
+              <div class="row mb-3">
+                <label for="inputDescription" class="form-label">Description</label>
+                <div class="col-sm-12">
+                  <input type="test" class="form-control" formControlName="description" id="inputDescription"
+                    placeholder="Enter Description">
+                </div>
+              </div>
 
-                            <div class="row mb-3">
-                                <label for="inputSymptoms" class="form-label">State</label>
-                              <div class="col-sm-12">
-                                <select class="form-select" id="stateId">
-                                    <option value="1">Maharashtra</option>
-                                </select>
-                              </div>
-                            </div>
+              <div class="row mb-3">
+                <label for="inputSymptoms" class="form-label">Symptoms</label>
+                <div class="col-sm-12">
+                  <input type="test" class="form-control" formControlName="symptoms" id="inputSymptoms"
+                    placeholder="Enter Symptoms">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputSymptoms" class="form-label">Tenant</label>
+                <div class="col-sm-12">
+                  <select class="form-select" formControlName="tenantId" id="tenantId">
+                    <option value="1" selected>HR</option>
+                    <option value="2">IT</option>
+                    <option value="3">Facility</option>
+                  </select>
+                </div>
+              </div>
 
-                            <div class="row mb-3">
-                                <label for="inputSymptoms" class="form-label">City</label>
-                              <div class="col-sm-12">
-                                <select class="form-select" formControlName="cityId" id="cityId">
-                                    <option value="1" selected>Pune</option>
-                                </select>
-                              </div>
-                            </div>
+              <div class="row mb-3">
+                <label for="inputSymptoms" class="form-label">Priority</label>
+                <div class="col-sm-12">
+                  <select class="form-select" formControlName="priorityId" id="tenantId">
+                    <option value="0" selected>High</option>
+                    <option value="1">Medium</option>
+                    <option value="2">Low</option>
+                  </select>
+                </div>
+              </div>
 
-                            <div class="row mb-3">
-                                <label for="inputSymptoms" class="form-label">Status</label>
-                              <div class="col-sm-12">
-                                <select class="form-select" formControlName="statusId" id="statusId">
-                                    <option value="0" selected="selected">New</option>
-                                    <option value="1" [disabled]="true">Assigned</option>
-                                    <option value="2" [disabled]="true">In Progress</option>
-                                    <option value="3" [disabled]="true">Resolved</option>
-                                    <option value="4" [disabled]="true">Closed</option>
-                                    <option value="5" [disabled]="true">Cancelled</option>
-                                    <option value="6" [disabled]="true">Rejected</option>
-                                </select>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3 text-start">        
-                        <div class="col-sm-12">
-                            <button type="button" type="submit" [disabled]="!form.valid" class="btn btn-primary">Create</button>
-                        </div>
-                      </div>            
-                  </form>
-			</div>
-			<div class="tab-pane fade" id="nav-chat" role="tabpanel" aria-labelledby="nav-chat-tab">
-				<textarea cols="10" rows="5" class="form-control"></textarea>
-			</div>
-			<div class="tab-pane fade" id="nav-Comment" role="tabpanel" aria-labelledby="nav-Comment-tab">
-				<div class="w-50">                    
-                    <div class="row mb-3">      
-                      <div class="col-sm-12">
-                        <label for="inputAnalyst" class="form-label">Analyst</label>
-                        <input type="text" class="form-control" id="inputAnalyst" placeholder="Enter inputAnalysts">                
-                      </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="inputComment" class="form-label">Comment</label>
-                      <div class="col-sm-12">
-                        <input type="test" class="form-control" id="inputComment" placeholder="Enter Comment">
-                      </div>
-                    </div>                         
-                  </div>
-			</div>
-		</div>
-	</div>
+              <div class="row mb-3">
+                <label for="inputSymptoms" class="form-label">Urgency</label>
+                <div class="col-sm-12">
+                  <select class="form-select" formControlName="urgencyId" id="urgencyId">
+                    <option value="0" selected>High</option>
+                    <option value="1">Medium</option>
+                    <option value="2">Low</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="row mb-3">
+                <label for="inputSymptoms" class="form-label">Country</label>
+                <div class="col-sm-12">
+                  <select class="form-select" id="countryId">
+                    <option value="1">India</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputSymptoms" class="form-label">State</label>
+                <div class="col-sm-12">
+                  <select class="form-select" id="stateId">
+                    <option value="1">Maharashtra</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputSymptoms" class="form-label">City</label>
+                <div class="col-sm-12">
+                  <select class="form-select" formControlName="cityId" id="cityId">
+                    <option value="1" selected>Pune</option>
+                    <option value="2" selected>Mumbai</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="inputSymptoms" class="form-label">Status</label>
+                <div class="col-sm-12">
+                  <select class="form-select" formControlName="statusId" id="statusId">
+                    <option value="0" selected="selected">New</option>
+                    <option value="1" [disabled]="true">Assigned</option>
+                    <option value="2" [disabled]="true">In Progress</option>
+                    <option value="3" [disabled]="true">Resolved</option>
+                    <option value="4" [disabled]="true">Closed</option>
+                    <option value="5" [disabled]="true">Cancelled</option>
+                    <option value="6" [disabled]="true">Rejected</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3 text-start">
+            <div class="col-sm-12">
+              <button type="button" type="submit" [disabled]="!form.valid" class="btn btn-primary">Create</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="tab-pane fade {{showChatTabClass}}" id="nav-chat" role="tabpanel" aria-labelledby="nav-chat-tab">
+        <textarea readonly cols="10" rows="5" class="form-control"></textarea>
+      </div>
+      <div class="tab-pane fade {{showCommentTabClass}}" id="nav-Comment" role="tabpanel"
+        aria-labelledby="nav-Comment-tab">
+        <div class="w-50">
+          <div class="row mb-3">
+            <label for="inputComment" class="form-label">Comment</label>
+            <div class="col-sm-12">
+              <textarea readonly rows="5" class="form-control" id="inputComment" placeholder="Enter Comment"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

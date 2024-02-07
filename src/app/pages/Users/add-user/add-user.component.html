@@ -1,4 +1,11 @@
 <div class="container justify-content-center align-items-center">
+  <div class="row">
+    <div class="col-12 text-end">
+      <a routerLink="/users-list" class="btn btn-primary btn-sm mb-2 me-0">
+        <span class="fa fa-user-alt pe-1"></span> Show Users
+      </a>
+  </div>
+</div>   
 	<div class="p-3">		
 		<nav>
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -10,22 +17,29 @@
 				<form [formGroup]="form" (ngSubmit)="creatUser()" class="w-50">                    
                     <div class="row mb-3">      
                       <div class="col-sm-12">
-                        <label for="inputUsername" class="form-label">Username</label>
-                        <input type="text" class="form-control" formControlName="username" id="inputUsername" placeholder="Enter Username">                
+                        <label for="inputFirstname" class="form-label">First Name</label>
+                        <input type="text" class="form-control" formControlName="firstName" id="inputFirstname" placeholder="Enter First Name">                
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">      
+                      <div class="col-sm-12">
+                        <label for="inputlastname" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" formControlName="lastName" id="inputlastname" placeholder="Enter Last Name">                
                       </div>
                     </div>
                 
                     <div class="row mb-3">      
                         <div class="col-sm-12">
                           <label for="inputEmailaddress" class="form-label">Email Address</label>
-                          <input type="email" class="form-control" formControlName="emailaddress" id="inputEmailaddress" placeholder="Enter Email Address">                
+                          <input type="email" class="form-control" formControlName="email" id="inputEmailaddress" placeholder="Enter Email Address">                
                         </div>
                       </div>
                 
                       <div class="row mb-3">      
                         <div class="col-sm-12">
                           <label for="inputMobileNumber" class="form-label">Mobile Number</label>
-                          <input type="text" class="form-control" formControlName="mobile" id="inputMobileNumber" placeholder="Enter Mobile Number">                
+                          <input type="text" class="form-control" formControlName="mobileNo" id="inputMobileNumber" placeholder="Enter Mobile Number">                
                         </div>
                       </div>
                 

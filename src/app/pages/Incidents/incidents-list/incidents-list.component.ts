@@ -12,10 +12,10 @@ import { HttpClientService } from 'src/app/Services/http-client.service';
   styleUrl: './incidents-list.component.scss'
 })
 export class IncidentsListComponent {
-  incidents: Incidents[];
+  incidents: Incidents[];  
 
   constructor(public service: HttpClientService) {
-
+    
   }
 
   ngOnInit(): void {

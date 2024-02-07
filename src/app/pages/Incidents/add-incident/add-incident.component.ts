@@ -1,19 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClientService } from 'src/app/Services/http-client.service';
 
 @Component({
   selector: 'app-add-incident',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './add-incident.component.html',
   styleUrl: './add-incident.component.scss'
 })
 
 export class AddIncidentComponent {
   form!: FormGroup
+  showIncidentTabClass: string = "active show";
+  showChatTabClass: string = "";
+  showCommentTabClass: string = "";
 
   constructor(public service: HttpClientService, private router: Router){}
 
@@ -37,5 +40,21 @@ export class AddIncidentComponent {
       console.log(data);      
       this.router.navigateByUrl("incidents-list");
     });        
+  }
+
+  showTab(tabName) {
+    this.showIncidentTabClass= "";
+    this.showChatTabClass = "";
+    this.showCommentTabClass = "";
+    
+    if(tabName == "incident") {
+        this.showIncidentTabClass = "active show";
+    }
+    else if(tabName == "chat") {
+      this.showChatTabClass = "active show";
+    }
+    else if(tabName == "comment"){
+      this.showCommentTabClass = "active show";
+    }
   }
 }
