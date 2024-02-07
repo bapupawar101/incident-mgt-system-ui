@@ -8,5 +8,8 @@ export interface Incidents {
     tenantId: number,
     priority: number,
     urgency: number,
-    createdDate: string
+    createdDate: string,
+    cityId: number,        
+    priorityId: number,
+    urgencyId: number,
 }

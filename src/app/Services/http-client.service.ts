@@ -13,10 +13,11 @@ export class HttpClientService {
     })
   };
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {     
+  }
 
   get(url: string): Observable<any> {
-    return this.httpClient.get(url).pipe(catchError((error: HttpErrorResponse) => {
+    return this.httpClient.get(url, this.httpOtions).pipe(catchError((error: HttpErrorResponse) => {
       return throwError(error);
     }));
   }

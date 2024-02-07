@@ -20,7 +20,7 @@ export class IncidentsListComponent {
 
   ngOnInit(): void {
     var url = "https://localhost:7073/Incident/GetAll";
-    this.service.post(url,null).subscribe((data: any) => {
+    this.service.post(url, null).subscribe((data: any) => {
       //console.log(data);
       this.incidents = data;
     });

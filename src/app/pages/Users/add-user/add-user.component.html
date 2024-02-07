@@ -1,1 +1,81 @@
-<p>add-user works!</p>
+<div class="container justify-content-center align-items-center">
+	<div class="p-3">		
+		<nav>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<button class="nav-link active" id="nav-create-User-tab" data-bs-toggle="tab" data-bs-target="#nav-create-User" type="button" role="tab" aria-controls="nav-create-User" aria-selected="true">Create User</button>				
+			</div>
+		</nav>
+		<div class="tab-content p-4 border" id="nav-tabContent">
+			<div class="tab-pane fade active show" id="nav-create-User" role="tabpanel" aria-labelledby="nav-create-User-tab">
+				<form [formGroup]="form" (ngSubmit)="creatUser()" class="w-50">                    
+                    <div class="row mb-3">      
+                      <div class="col-sm-12">
+                        <label for="inputUsername" class="form-label">Username</label>
+                        <input type="text" class="form-control" formControlName="username" id="inputUsername" placeholder="Enter Username">                
+                      </div>
+                    </div>
+                
+                    <div class="row mb-3">      
+                        <div class="col-sm-12">
+                          <label for="inputEmailaddress" class="form-label">Email Address</label>
+                          <input type="email" class="form-control" formControlName="emailaddress" id="inputEmailaddress" placeholder="Enter Email Address">                
+                        </div>
+                      </div>
+                
+                      <div class="row mb-3">      
+                        <div class="col-sm-12">
+                          <label for="inputMobileNumber" class="form-label">Mobile Number</label>
+                          <input type="text" class="form-control" formControlName="mobile" id="inputMobileNumber" placeholder="Enter Mobile Number">                
+                        </div>
+                      </div>
+                
+                      <div class="row mb-3">      
+                        <div class="col-sm-12">
+                          <label for="inputRole" class="form-label">Role</label><br/>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" formControlName="roleAdmin" type="checkbox" id="inlineCheckbox1" value="Admin">
+                            <label class="form-check-label" for="inlineCheckbox1">Admin</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" formControlName="roleEndUser" type="checkbox" id="inlineCheckbox2" value="EndUser">
+                            <label class="form-check-label" for="inlineCheckbox2">End User</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" formControlName="roleAnalyst" type="checkbox" id="inlineCheckbox3" value="Analyst">
+                            <label class="form-check-label" for="inlineCheckbox3">Analyst</label>
+                          </div>                          
+                        </div>
+                      </div>
+                
+                    <div class="row mb-3">
+                        <label for="inputPassword" class="form-label">Password</label>
+                      <div class="col-sm-12">
+                        <input type="password" class="form-control" formControlName="password" id="inputPassword" placeholder="Enter Password">
+                      </div>
+                    </div>
+                
+                    <div class="row mb-3">
+                        <label for="inputConfirmPassword" class="form-label">Confirm sPassword</label>
+                      <div class="col-sm-12">
+                        <input type="password" class="form-control" formControlName="confirmpassword" id="inputConfirmPassword" placeholder="Enter Confirm Password">
+                      </div>
+                    </div>
+                
+                    <div class="row mb-3">        
+                        <div class="col-sm-12">
+                            <button type="button" type="submit" [disabled]="!form.valid" class="btn btn-primary w-100">Create</button>
+                        </div>
+                      </div>            
+                  </form>
+			</div>			
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+

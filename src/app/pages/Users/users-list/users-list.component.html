@@ -1,1 +1,30 @@
-<p>users-list works!</p>
+<div class="container mt-5">
+    <div class="row">        
+        <div class="col-12 text-end">
+            <a routerLink="/add-user" class="btn btn-primary btn-sm mb-2 me-0">
+                <span class="fa fa-plus"></span> Add New
+              </a>
+      </div>
+    </div>    
+  <table class="table table-striped">
+      <thead>
+          <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Role</th>
+            <th scope="col">Email Address</th>      
+            <th scope="col">Mobile</th>            
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="users.length == 0">
+                <th class="fw-normal text-center" colspan="4">No Data Available</th>                
+            </tr>
+          <tr *ngFor="let item of users">
+            <th>{{item.username}}</th>
+            <td>{{item.role}}</td>
+            <td>{{item.emailAddress}}</td>    
+            <td>{{item.mobile}}</td>            
+          </tr>
+        </tbody>
+    </table>
+  </div>

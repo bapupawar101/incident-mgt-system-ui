@@ -11,6 +11,7 @@ import { HttpClientService } from 'src/app/Services/http-client.service';
   templateUrl: './add-incident.component.html',
   styleUrl: './add-incident.component.scss'
 })
+
 export class AddIncidentComponent {
   form!: FormGroup
 

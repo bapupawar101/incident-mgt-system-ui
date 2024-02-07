@@ -5,6 +5,9 @@ import { GuestComponent } from './theme/layout/guest/guest.component';
 import DashboardComponent from './dashboard/dashboard.component';
 import { IncidentsListComponent } from './pages/Incidents/incidents-list/incidents-list.component';
 import { AddIncidentComponent } from './pages/Incidents/add-incident/add-incident.component';
+import { UsersListComponent } from './pages/Users/users-list/users-list.component';
+import { AddUserComponent } from './pages/Users/add-user/add-user.component';
+import { ViewIncidentComponent } from './pages/Incidents/view-incident/view-incident.component';
 
 const routes: Routes = [
   {
@@ -35,12 +38,17 @@ const routes: Routes = [
       {
         path: 'users-list',
         title:"Uusers List",
-        component: IncidentsListComponent
+        component: UsersListComponent
       },
       {
         path: 'add-user',
         title: 'Add User',
-        component: AddIncidentComponent
+        component: AddUserComponent
+      },
+      {
+        path: 'view-incident/:id',
+        title: 'View Incident',
+        component: ViewIncidentComponent
       },
       // {
       //   path: 'forms',

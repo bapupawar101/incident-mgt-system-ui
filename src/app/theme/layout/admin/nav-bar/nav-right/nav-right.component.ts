@@ -13,6 +13,7 @@ export class NavRightComponent {
 
   logout() {
     localStorage.setItem("isAuthenticated", "");
+    localStorage.setItem("jwtToken", "");
     this.router.navigateByUrl("auth/signin");
   }
 
