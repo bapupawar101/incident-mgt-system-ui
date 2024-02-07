@@ -1,6 +1,7 @@
 export interface User {
-    username: string,
-    role: string,
-    emailAddress: string,
-    mobile: string
+    firstName: string,
+    lastName: string,
+    email: string,
+    createdDateTime: string,    
+    mobileNo: string
 }

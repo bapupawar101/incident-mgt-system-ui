@@ -12,21 +12,19 @@ import { HttpClientService } from 'src/app/Services/http-client.service';
   styleUrl: './users-list.component.scss'
 })
 export class UsersListComponent {
-  users: User[] = [
-    {username: "test 01", role: "End User", emailAddress: "test01@gmail.com", mobile: "23423423442"},
-    {username: "test 02", role: "Admin", emailAddress: "test02@gmail.com", mobile: "23423423442"},
-    {username: "test 03", role: "Analyst", emailAddress: "test03@gmail.com", mobile: "23423423442"},    
-  ];
+  users: User[] = [];
 
-  constructor(public service: HttpClientService) {
-
-  }
+  constructor(public service: HttpClientService) {  }
 
   ngOnInit(): void {
-    var url = "https://jsonplaceholder.typicode.com/todos/";
+    this.getUserList();    
+  }
+
+  getUserList() {
+    var url = "https://localhost:7073/api/User/GetAllUsers";
     this.service.get(url).subscribe((data: any) => {
       console.log(data);
-      //this.incidents = data;
+      this.users = data;
     });
   }
 }

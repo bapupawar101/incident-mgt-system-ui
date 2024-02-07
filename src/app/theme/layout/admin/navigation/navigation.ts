@@ -53,7 +53,7 @@ const NavigationItems = [
             title: 'Show Incidents',
             type: 'item',
             url: '/incidents-list',
-          }
+          },          
         ],
       }
       ,
