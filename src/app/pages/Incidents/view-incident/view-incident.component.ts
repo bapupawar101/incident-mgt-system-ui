@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Incidents } from 'src/app/Models/incidents';
+import { Comments } from 'src/app/Models/comments';
 import { HttpClientService } from 'src/app/Services/http-client.service';
+import { bHideIncidentMenuItems } from 'src/app/Models/UserRole';
 
 @Component({
   selector: 'app-view-incident',
@@ -12,6 +14,7 @@ import { HttpClientService } from 'src/app/Services/http-client.service';
   templateUrl: './view-incident.component.html',
   styleUrl: './view-incident.component.scss'
 })
+
 export class ViewIncidentComponent {
   id!: number;
   incident: Incidents
@@ -20,10 +23,14 @@ export class ViewIncidentComponent {
   showIncidentTabClass: string = "active show";
   showChatTabClass: string = "";
   showCommentTabClass: string = "";
-  message: string = "";
-  bHasComment: boolean = false;
+  comments: Comments[] = [];    
 
-  constructor(public service: HttpClientService, private router: Router, private route: ActivatedRoute){}
+  constructor(public service: HttpClientService, private router: Router, private route: ActivatedRoute){
+    if(bHideIncidentMenuItems())
+    {
+      this.router.navigateByUrl('');
+    }
+  }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params["id"]
@@ -38,7 +45,7 @@ export class ViewIncidentComponent {
       priorityId: new FormControl('', [Validators.required]),
       urgencyId: new FormControl('', [Validators.required]),
       cityId: new FormControl('', [Validators.required]),
-      status: new FormControl('', [Validators.required]),
+      status: new FormControl(0, [Validators.required]),
     });
 
     this.commentForm = new FormGroup({
@@ -57,31 +64,34 @@ export class ViewIncidentComponent {
     });        
   }  
 
-  getCommentDetails() {
-    this.bHasComment = false;
-    var url = "https://localhost:7073/Incident/GetCommentById?id=" + this.id;
+  getCommentDetails() {    
+    var url = "https://localhost:7073/Incident/GetAllComments?incId=" + this.id;
     this.service.get(url).subscribe((data: any) => {      
       console.log(data);
-      if(data){
-        this.message = data.message;
-        this.bHasComment = true;
+      if(data) {        
+        this.comments = data;
       }
     });        
   }  
 
-  creatIncident() {
+  updateIncident() {
     console.log(this.form.value);
     var url = "https://localhost:7073/Incident/Update";
-    this.service.update(url, this.form.value).subscribe((data: any) => {      
+    var jsonData = this.form.value;
+    jsonData["status"] = Number(this.form.value['status']);
+    jsonData["priority"] = this.form.value['priorityId'];
+    jsonData["urgency"] = this.form.value['methodId'];
+    this.service.update(url, jsonData).subscribe((data: any) => {      
       this.router.navigateByUrl("incidents-list");
     });        
   }
 
   addComment() {        
     var url = "https://localhost:7073/Incident/SaveComment";
-    this.service.create(url, this.commentForm.value).subscribe((data: any) => {
-      this.bHasComment = true;
-    });
+    this.service.create(url, this.commentForm.value).subscribe((data: any) => {            
+      this.getCommentDetails();      
+      this.commentForm.get('message').setValue('');
+    });  
   }
 
   showTab(tabName) {

@@ -23,7 +23,7 @@
     <div class="tab-content p-4 border" id="nav-tabContent">
       <div class="tab-pane fade {{showIncidentTabClass}}" id="nav-create-incident" role="tabpanel"
         aria-labelledby="nav-create-incident-tab">
-        <form [formGroup]="form" (ngSubmit)="creatIncident()">
+        <form [formGroup]="form" (ngSubmit)="updateIncident()">
           <div class="row">
             <div class="col-6">
               <div class="row mb-3">
@@ -137,15 +137,21 @@
         aria-labelledby="nav-Comment-tab">
         <form [formGroup]="commentForm" (ngSubmit)="addComment()">
           <div class="w-50">            
+            <div *ngFor="let item of comments" class="border mb-4 p-3">
+              <div><h5 class="d-inline-block"><span class="fa fa-user me-1"></span>{{item.user.firstName}} {{item.user.lastName}}</h5> 
+                <span class="f-10 ms-1 float-end">{{item.createdDate}}</span></div>
+              <div>{{item.message}}</div>
+            </div>
+
             <div class="row mb-3">
               <label for="inputComment" class="form-label">Comment</label>
               <div class="col-sm-12">
-                <textarea rows="5" [(ngModel)]="message" class="form-control" formControlName="message" id="inputComment" placeholder="Enter Comment"></textarea>
+                <textarea rows="5" class="form-control" formControlName="message" id="inputComment" placeholder="Enter Comment"></textarea>
               </div>
             </div>
             <div class="row mb-3 text-start">
               <div class="col-sm-12">
-                <button *ngIf="!bHasComment" type="button" type="submit" [disabled]="!commentForm.valid" class="btn btn-primary">Save</button>
+                <button type="button" type="submit" [disabled]="!commentForm.valid" class="btn btn-primary">Save</button>
               </div>
             </div>
           </div>

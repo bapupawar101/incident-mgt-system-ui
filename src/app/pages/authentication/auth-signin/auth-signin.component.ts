@@ -43,6 +43,7 @@ export default class AuthSigninComponent {
       {
         this.router.navigateByUrl("dashboard");
         localStorage.setItem("jwtToken", data.jwtToken);
+        localStorage.setItem("loginUserInfo", JSON.stringify(data.user));
       }
       else
       {

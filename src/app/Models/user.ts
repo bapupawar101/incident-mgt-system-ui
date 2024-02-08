@@ -5,3 +5,5 @@ export interface User {
     createdDateTime: string,    
     mobileNo: string
 }
+
+  

@@ -18,6 +18,7 @@ export class AddUserComponent {
 
   ngOnInit(): void {
     this.form = new FormGroup({
+      username: new FormControl('', [Validators.required]),
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),      
@@ -32,9 +33,22 @@ export class AddUserComponent {
 
   creatUser() {
     console.log(this.form.value);
+    var jsonData = this.form.value;    
+    jsonData["roles"] = [];    
+    if(jsonData["roleAnalyst"] == true){
+      jsonData["roles"].push(0);
+    }
+
+    if(jsonData["roleAdmin"] == true){
+      jsonData["roles"].push(1);
+    }
+
+    if(jsonData["roleEndUser"] == true){
+      jsonData["roles"].push(2);
+    }
+    
     var url = "https://localhost:7073/api/User/AddUser";
-    this.service.create(url, this.form.value).subscribe((data: any) => {
-      console.log(data);
+    this.service.create(url, jsonData).subscribe((data: any) => {            
       this.router.navigateByUrl("users-list");
     });        
   }
